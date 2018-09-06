@@ -1,8 +1,17 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+<div id="app">
+  <img src="./assets/logo.png">
+  <nav>
+    <div>
+      <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/admin">Admin</router-link></li>
+        <li><router-link to="/cart">Cart</router-link></li>
+      </ul>
+    </div>
+  </nav>
+  <router-view/>
+</div>
 </template>
 
 <script>
