@@ -2,12 +2,15 @@
   <form @submit.prevent="saveProduct">
     <div>
       <label>Name</label>
+      <span class="small text-danger" v-show="errors.has('name')">Name is required</span>
       <input
         type="text"
         v-model="product.name"
+        v-validate="'required'"
+        :class="{'input': true, 'error': errors.has('name')}"
         name="name" />
     </div>
-    <button type="submit">Create</button>
+    <button class="button is-primary" :disabled="errors.any()" type="submit" >Create</button>
   </form>
 </template>
 

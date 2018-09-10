@@ -1,12 +1,39 @@
 <template>
 <div id="app">
-  <nav>
-    <div>
-      <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/admin">Admin</router-link></li>
-        <li><router-link to="/cart">Cart</router-link></li>
-      </ul>
+
+  <nav class="navbar is-transparent">
+    <div class="navbar-brand">
+      <router-link class="navbar-item" to="/">
+        <img src="./assets/logo.png" alt="Logo" width="50">
+      </router-link>
+      <div class="navbar-burger burger" :class="{ 'is-active': isMenuActive }" @click="isMenuActive = !isMenuActive">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="navbar-menu" :class="{ 'is-active': isMenuActive }">
+      <div class="navbar-start">
+        <router-link class="navbar-item" exact-active-class="is-active" to="/admin">Admin</router-link>
+        <router-link class="navbar-item" exact-active-class="is-active" to="/cart">Cart</router-link>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <router-link class="button" exact-active-class="is-active" to="/login">
+                <span class="icon">
+                  <i class="fab fa-twitter"></i>
+                </span>
+                <span>
+                  Login
+                </span>
+              </router-link>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
   <router-view/>
@@ -15,17 +42,17 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      isMenuActive: false
+    }
+  }
 }
 </script>
 
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
