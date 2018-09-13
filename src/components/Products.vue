@@ -2,39 +2,14 @@
   <v-container grid-list-md>
     <v-layout row wrap>
       <v-flex d-flex justify-center xs12 sm4 md3 lg3 xl2 v-for="product in products" :key="`${product.id}`">
-        <v-hover>
-          <v-card
-            slot-scope="{ hover }"
-            :class="`elevation-${hover ? 12 : 2}`"
-            class="">
-            <v-img
-              :aspect-ratio="4/3"
-              :src="product.imgSrc">
-            </v-img>
-            <v-card-text
-              class="pt-4"
-              style="position: relative;">
-              <v-btn
-                @click="addToCart(product)"
-                absolute
-                color="orange"
-                class="white--text"
-                fab
-                right
-                top>
-                <v-icon>shopping_cart</v-icon>
-              </v-btn>
-              <div class="font-weight-light grey--text title mb-2">{{ product.name }}</div>
-              <div class="font-weight-light title mb-2">{{ product.price }}</div>
-            </v-card-text>
-          </v-card>
-        </v-hover>
+        <product-card :product="product" @addToCart="addToCart"></product-card>
       </v-flex>
     </v-layout>
   </v-container>
 </template>  
 
 <script>
+import ProductCard from '@/shared/ProductCard'
 export default {
   data () {
     return {
@@ -48,8 +23,12 @@ export default {
   },
   methods: {
     addToCart(prod) {
-      alert('added ' + JSON.stringify(prod))
+      // alert('added ' + JSON.stringify(prod))
+      this.$store.commit('addToCart', prod);
     }
+  },
+  components: {
+    ProductCard
   }
 }
 </script>

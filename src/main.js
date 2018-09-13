@@ -5,18 +5,20 @@ import App from './App'
 import router from './router'
 import VeeValidate from 'vee-validate'
 import Vuetify from 'vuetify'
-// import '@mdi/font/css/materialdesignicons.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'vuetify/dist/vuetify.min.css'
-
 
 Vue.use(Vuetify)
 Vue.use(VeeValidate, { events: 'blur' })
 Vue.config.productionTip = false
 
+
+import { store } from './store';
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: { App },
   template: '<App/>'

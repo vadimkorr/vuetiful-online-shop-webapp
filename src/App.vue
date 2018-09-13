@@ -66,7 +66,7 @@
           class="hidden-sm-and-down">
         </v-text-field>
         <v-spacer></v-spacer>
-        <v-btn icon>
+        <v-btn icon :to="'/cart'">
           <v-icon>shopping_cart</v-icon>
         </v-btn>
         <v-btn icon large>
