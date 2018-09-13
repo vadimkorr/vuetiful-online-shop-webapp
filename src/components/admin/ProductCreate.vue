@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import ProductForm from '@/components/admin/product/ProductForm.vue'
+import ProductForm from '@/components/admin/ProductForm.vue'
 export default {
-  name: 'AdminCreate',
+  name: 'ProductCreate',
   data () {
     return {
       msg: 'Admin Page Create',

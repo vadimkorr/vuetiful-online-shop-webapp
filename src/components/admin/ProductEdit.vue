@@ -1,17 +1,17 @@
 <template>
   <div>
     <div class="title">
-      <h1>{{ msg }}</h1>
+      <h1>{{ msg }}: {{ $route.params.id }}</h1>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AdminProducts',
+  name: 'ProductEdit',
   data () {
     return {
-      msg: 'Admin Page Products'
+      msg: 'Admin Page Edit'
     }
   }
 }
