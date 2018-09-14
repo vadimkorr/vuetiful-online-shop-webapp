@@ -67,7 +67,7 @@
         </v-text-field>
         <v-spacer></v-spacer>
         <v-btn icon :to="'/cart'">
-          <v-icon>shopping_cart</v-icon>
+          <countable-icon :icon="'shopping_cart'" :count="cartItemsCount"></countable-icon>
         </v-btn>
         <v-btn icon large>
           <v-avatar size="32px" tile>
@@ -89,6 +89,8 @@
 </template>
 
 <script>
+import CountableIcon from '@/shared/CountableIcon'
+
 export default {
   name: 'App',
   data: () => ({
@@ -109,7 +111,15 @@ export default {
         ]
       }
     ]
-  })
+  }),
+  computed: {
+    cartItemsCount () {
+      return this.$store.getters.cartItemsCount
+    }
+  },
+  components: {
+    CountableIcon
+  }
 }
 </script>
 

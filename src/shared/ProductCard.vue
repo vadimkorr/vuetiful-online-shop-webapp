@@ -6,7 +6,7 @@
       class="">
       <v-img
         :aspect-ratio="4/3"
-        :src="product.imgSrc">
+        :src="product.img">
       </v-img>
       <v-card-text
         class="pt-4"

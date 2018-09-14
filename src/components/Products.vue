@@ -16,7 +16,7 @@ export default {
       products: Array.from({ length: 5 }, (v, k) => ({
         id: k,
         name: 'name of product',
-        imgSrc: 'https://cdn.vuetifyjs.com/images/cards/cooking.png',
+        img: 'https://cdn.vuetifyjs.com/images/cards/cooking.png',
         price: 5
       }))
     }
