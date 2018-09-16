@@ -1,13 +1,15 @@
 <template>
-  <v-flex d-flex row align-center>
-    <v-btn fab dark small color="primary" @click="onDec">
-      <v-icon dark>remove</v-icon>
-    </v-btn>
-    <div>{{ count }}</div>
-    <v-btn fab dark small color="primary" @click="onInc">
-      <v-icon dark>add</v-icon>
-    </v-btn>
-  </v-flex>
+  <div>
+    <v-flex d-flex row align-center>
+      <v-btn fab outline  small color="primary" @click="onDec">
+        <v-icon dark>remove</v-icon>
+      </v-btn>
+      <div class="counter">{{ count }}</div>
+      <v-btn fab outline small color="primary" @click="onInc">
+        <v-icon dark>add</v-icon>
+      </v-btn>
+    </v-flex>
+  </div>
 </template>
 
 <script>
@@ -32,5 +34,8 @@ export default {
 </script>
 
 <style>
-
+.counter {
+  width: 30px;
+  text-align: center;
+}
 </style>

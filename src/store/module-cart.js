@@ -1,10 +1,28 @@
+
+
 export default {
   state: {
     products: []
   },
   mutations: {
     addToCart (state, product) {
-      state.products = [...state.products, product]
+      let index = 0;
+      let prod = state.products.find((p, ind) => {
+        index = ind;
+        return p.id === product.id
+      });
+      if (prod) {
+        prod.count++;
+        state.products.splice(index, 1, prod);
+      } else {
+        state.products = [
+          ...state.products,
+          { 
+            ...product,
+            count: 1
+          }
+        ]
+      }
     },
     removeFromCart (state, product) {
       state.products = state.products.filter(p => {
