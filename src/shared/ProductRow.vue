@@ -46,7 +46,7 @@ export default {
     onRemove () {
       this.$emit('onRemove', this.product)
     },
-    onChange(count) {
+    onChange (count) {
       this.overallPrice = this.recalc(this.product.price, count)
       this.$emit('onChange', this.product, count)
     }

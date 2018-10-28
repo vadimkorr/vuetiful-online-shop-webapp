@@ -7,13 +7,11 @@ import VeeValidate from 'vee-validate'
 import Vuetify from 'vuetify'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'vuetify/dist/vuetify.min.css'
+import { store } from './store'
 
 Vue.use(Vuetify)
 Vue.use(VeeValidate, { events: 'blur' })
 Vue.config.productionTip = false
-
-
-import { store } from './store';
 
 /* eslint-disable no-new */
 new Vue({

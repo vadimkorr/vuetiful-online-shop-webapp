@@ -24,7 +24,7 @@
                   v-for="subItem in item.items"
                   :key="subItem.title"
                   :to="subItem.link"
-                  @click="">
+                  @click="() => {}">
                   <v-list-tile-content>
                     <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
                   </v-list-tile-content>

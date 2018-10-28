@@ -2,7 +2,7 @@
   <v-badge
     color="purple"
     overlap>
-    <div 
+    <div
       v-if="count > 0"
       slot="badge"
       dark

@@ -11,4 +11,4 @@ export const Urls = {
   getOrder: '/api/v1/orders',
   createOrder: '/api/v1/orders',
   changeOrderStatus: '/api/v1/orders'
-};
+}
