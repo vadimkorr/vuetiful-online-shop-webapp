@@ -2,7 +2,7 @@
 <div>
   <v-list-tile>
     <v-list-tile-avatar>
-      <img :src="product.img">
+      <img :src="product.image">
     </v-list-tile-avatar>
     <v-list-tile-content row>
       <v-flex d-flex align-center class="row-controls">

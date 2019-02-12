@@ -8,8 +8,8 @@ export default {
   getProduct: id => {
     return get(`${Urls.getProduct}/${id}`)
   },
-  createProduct: data => {
-    return upload(Urls.createProduct, data)
+  createProduct: (formData) => {
+    return upload(Urls.createProduct, formData)
   },
   updateProduct: (id, data) => {
     return upload(`${Urls.updateProduct}/${id}`, data)

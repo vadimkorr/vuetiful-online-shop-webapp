@@ -22,12 +22,6 @@ import productsService from '../services/products'
 export default {
   data () {
     return {
-      products: Array.from({ length: 5 }, (v, k) => ({
-        id: k,
-        name: 'name of product',
-        img: 'https://cdn.vuetifyjs.com/images/cards/cooking.png',
-        price: 5
-      })),
       page: 1,
       pagesCount: 0
     }
@@ -41,7 +35,7 @@ export default {
       this.$store.commit('addToCart', prod)
     },
     getProducts (page) {
-      const itemsPerPage = 10;
+      const itemsPerPage = 10
       const start = itemsPerPage * (page - 1)
       const count = itemsPerPage
       productsService.getProducts(start, count)
@@ -52,7 +46,7 @@ export default {
         .catch(e => console.log('Something went wrong', e))
     },
     getInitProducts () {
-      const initPage = 1;
+      const initPage = 1
       this.getProducts(initPage)
     },
     onPageChange (page) {

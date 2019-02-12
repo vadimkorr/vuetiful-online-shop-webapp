@@ -110,14 +110,21 @@ export function get (uri, data = {}) {
   })
 }
 
-export function upload (uri, data) {
-  return fetch(getFullUrl(uri), {
-    headers: getHeaders(true),
-    cors: true,
-    method: 'POST',
-    body: data
+export function upload (uri, formData) {
+  return axios.post(getFullUrl(uri), formData, {
+    headers: getHeaders(),
+    withCredentials: true
   })
 }
+
+// export function upload (uri, data) {
+//   return fetch(getFullUrl(uri), {
+//     headers: getHeaders(true),
+//     cors: true,
+//     method: 'POST',
+//     body: data
+//   })
+// }
 
 function getFullUrl (uri) {
   return 'http://localhost:8080' + uri

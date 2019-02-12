@@ -11,6 +11,7 @@
 
 <script>
 import ProductForm from '@/components/admin/ProductForm.vue'
+import productsService from '../../services/products'
 export default {
   name: 'ProductCreate',
   data () {
@@ -22,8 +23,12 @@ export default {
     }
   },
   methods: {
-    createProduct () {
-      // alert('saved!')
+    createProduct (product) {
+      const formData = new FormData()
+      formData.append('image', product.imageFile, product.imageFile.name)
+      formData.append('name', product.name)
+      formData.append('price', product.description)
+      productsService.createProduct(formData)
     }
   },
   components: {
