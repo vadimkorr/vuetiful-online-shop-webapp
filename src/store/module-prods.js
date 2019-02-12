@@ -5,7 +5,7 @@ export default {
   },
   mutations: {
     addProds (state, products) {
-      state.products = products
+      state.products = [...products]
     }
   },
   actions: { },

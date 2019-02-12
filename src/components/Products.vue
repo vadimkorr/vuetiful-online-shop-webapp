@@ -8,7 +8,7 @@
     <div class="text-xs-center">
       <v-pagination
         v-model="page"
-        :length="15"
+        :length="pagesCount"
         :total-visible="7"
         @input="onPageChange"
       ></v-pagination>
@@ -28,7 +28,8 @@ export default {
         img: 'https://cdn.vuetifyjs.com/images/cards/cooking.png',
         price: 5
       })),
-      page: 1
+      page: 1,
+      pagesCount: 0
     }
   },
   mounted: function () {
@@ -40,12 +41,19 @@ export default {
       this.$store.commit('addToCart', prod)
     },
     getProducts (page) {
-      productsService.getProducts(page, 10)
-        .then(p => this.$store.commit('addProds', p.data))
+      const itemsPerPage = 10;
+      const start = itemsPerPage * (page - 1)
+      const count = itemsPerPage
+      productsService.getProducts(start, count)
+        .then(p => {
+          this.pagesCount = p.data.pages
+          this.$store.commit('addProds', p.data.products)
+        })
         .catch(e => console.log('Something went wrong', e))
     },
     getInitProducts () {
-      this.getProducts(0)
+      const initPage = 1;
+      this.getProducts(initPage)
     },
     onPageChange (page) {
       this.getProducts(page)

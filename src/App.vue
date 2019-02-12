@@ -55,26 +55,11 @@
         fixed>
         <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
           <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-          <span class="hidden-sm-and-down">Google Contacts</span>
+          <span class="hidden-sm-and-down">Online Store</span>
         </v-toolbar-title>
-        <v-text-field
-          flat
-          solo-inverted
-          hide-details
-          prepend-inner-icon="search"
-          label="Search"
-          class="hidden-sm-and-down">
-        </v-text-field>
         <v-spacer></v-spacer>
         <v-btn icon :to="'/cart'">
           <countable-icon :icon="'shopping_cart'" :count="cartItemsCount"></countable-icon>
-        </v-btn>
-        <v-btn icon large>
-          <v-avatar size="32px" tile>
-            <img
-              src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-              alt="Vuetify">
-          </v-avatar>
         </v-btn>
       </v-toolbar>
       <v-content>
@@ -99,7 +84,7 @@ export default {
       {
         icon: 'local_activity',
         title: 'Products',
-        link: '/products'
+        link: '/'
       },
       {
         icon: 'local_activity',
