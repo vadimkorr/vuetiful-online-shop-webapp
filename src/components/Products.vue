@@ -7,11 +7,15 @@
     </v-layout>
     <div class="text-xs-center">
       <v-pagination
+        v-if="prods.length > 0"
         v-model="page"
         :length="pagesCount"
         :total-visible="7"
         @input="onPageChange"
       ></v-pagination>
+      <div
+        v-if="prods.length < 1"
+      >No products yet :(</div>
     </div>
   </v-container>
 </template>
