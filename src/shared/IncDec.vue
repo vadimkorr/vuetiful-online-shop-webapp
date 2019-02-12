@@ -21,12 +21,12 @@ export default {
     }
   },
   methods: {
-    onInc() {
+    onInc () {
       this.count++
       this.$emit('onChange', this.count)
     },
-    onDec() {
-      this.count = this.count > this.min ? this.count - 1 : this.min 
+    onDec () {
+      this.count = this.count > this.min ? this.count - 1 : this.min
       this.$emit('onChange', this.count)
     }
   }

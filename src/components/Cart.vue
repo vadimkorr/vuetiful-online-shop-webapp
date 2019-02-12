@@ -16,7 +16,7 @@
           <span>Total: {{ overallSum }}₽</span>
         </div>
         <div class="make-order-btn">
-          <v-btn color="primary">Make an order</v-btn>  
+          <v-btn color="primary">Make an order</v-btn>
         </div>
       </div>
     </v-flex>
@@ -66,13 +66,13 @@ export default {
     },
     onProdRemoveConfirm () {
       this.removeConfirDialog = false
-      this.$store.commit('removeFromCart', this.productToRemove);
+      this.$store.commit('removeFromCart', this.productToRemove)
     },
     onChange (product, count) {
       this.$store.commit('setCartProductCount', {
         product,
         count
-      });
+      })
     }
   },
   computed: {
@@ -80,11 +80,11 @@ export default {
       return this.$store.state.cart.products
     },
     overallSum () {
-      let sum = 0;
+      let sum = 0
       this.$store.state.cart.products.forEach(p => {
         sum += p.count * p.price
-      });
-      return sum || 0;
+      })
+      return sum || 0
     }
   },
   components: {
