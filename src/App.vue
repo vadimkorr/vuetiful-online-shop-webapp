@@ -92,6 +92,7 @@ export default {
         active: true,
         items: [
           { title: 'Products', icon: '', link: '/admin' },
+          { title: 'Orders', icon: '', link: '/orders' },
           { title: 'Create Product', icon: '', link: '/create-product' }
         ]
       }

@@ -16,7 +16,7 @@
           <span>Total: {{ overallSum }}₽</span>
         </div>
         <div class="make-order-btn">
-          <v-btn color="primary">Make an order</v-btn>
+          <v-btn @click="makeOrder()" color="primary">Make an order</v-btn>
         </div>
       </div>
     </v-flex>
@@ -49,6 +49,7 @@
 <script>
 import ProductCard from '@/shared/ProductCard'
 import ProductRow from '@/shared/ProductRow'
+import ordersService from '../services/orders'
 
 export default {
   name: 'Cart',
@@ -73,6 +74,11 @@ export default {
         product,
         count
       })
+    },
+    makeOrder () {
+      const order = this.products.map(p => ({ id: p.id, count: p.count }))
+      ordersService.createOrder(order)
+        .catch(e => console.log('Something went wrong', e))
     }
   },
   computed: {

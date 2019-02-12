@@ -5,6 +5,7 @@ import Cart from '@/components/Cart'
 import Products from '@/components/Products'
 
 import Admin from '@/components/admin/Admin'
+import Orders from '@/components/admin/Orders'
 import ProductCreate from '@/components/admin/ProductCreate'
 import ProductEdit from '@/components/admin/ProductEdit'
 
@@ -26,6 +27,11 @@ export default new Router({
       path: '/admin',
       name: 'Admin',
       component: Admin
+    },
+    {
+      path: '/orders',
+      name: 'Orders',
+      component: Orders
     },
     {
       path: '/create-product',

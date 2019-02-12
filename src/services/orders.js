@@ -1,17 +1,17 @@
-import { get, post, remove } from '../helpers/http';
-import { Urls } from '../consts/urls';
+import { get, post } from '../helpers/http'
+import { Urls } from '../consts/urls'
 
-export default (ordersService = {
+export default {
   getOrders: (start, count) => {
-    return get(Urls.getOrders, { start, count });
+    return get(Urls.getOrders, { start, count })
   },
   getOrder: id => {
-    return get(`${Urls.getOrder}/${id}`);
+    return get(`${Urls.getOrder}/${id}`)
   },
   createOrder: items => {
-    return post(Urls.createOrder, items);
+    return post(Urls.createOrder, { items, status: 'created' })
   },
   changeOrderStatus: (id, status) => {
-    return post(`${Urls.getOrder}/${id}`, { status });
+    return post(`${Urls.getOrder}/${id}`, { status })
   }
-});
+}
