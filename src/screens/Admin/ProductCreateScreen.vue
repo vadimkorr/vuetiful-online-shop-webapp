@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import ProductForm from '@/components/admin/ProductForm.vue'
-import productsService from '../../services/products'
+import ProductForm from './ProductForm'
+import productsService from '@/services/products'
 export default {
   name: 'ProductCreate',
   data () {

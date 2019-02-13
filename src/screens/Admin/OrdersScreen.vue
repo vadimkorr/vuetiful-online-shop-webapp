@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import ordersService from '../../services/orders'
+import ordersService from '@/services/orders'
 export default {
   data () {
     return {

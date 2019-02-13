@@ -22,7 +22,7 @@
 
 <script>
 import ProductCard from '@/shared/ProductCard'
-import productsService from '../services/products'
+import productsService from '@/services/products'
 export default {
   data () {
     return {

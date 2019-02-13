@@ -49,7 +49,7 @@
 <script>
 import ProductCard from '@/shared/ProductCard'
 import ProductRow from '@/shared/ProductRow'
-import ordersService from '../services/orders'
+import ordersService from '@/services/orders'
 
 export default {
   name: 'Cart',
