@@ -11,8 +11,24 @@
                   <h1 class="flex my-4 primary--text">Online Store</h1>
                 </div>
                 <v-form>
-                  <v-text-field append-icon="person" name="login" label="Login" type="text" v-model="model.username"></v-text-field>
-                  <v-text-field append-icon="lock" name="password" label="Password" id="password" type="password" v-model="model.password"></v-text-field>
+                  <v-text-field
+                    append-icon="person"
+                    label="Login"
+                    type="text"
+                    v-model="model.login"
+                    v-validate="'required'"
+                    data-vv-name="login"
+                    :error-messages="errors.first('login')"
+                  ></v-text-field>
+                  <v-text-field
+                    append-icon="lock"
+                    label="Password"
+                    type="password"
+                    v-model="model.password"
+                    v-validate="'required'"
+                    data-vv-name="password"
+                    :error-messages="errors.first('password')"
+                  ></v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
@@ -29,28 +45,33 @@
 </template>
 
 <script>
+import { Validator } from 'vee-validate'
 export default {
   data () {
+    Validator.localize(this.dictionary)
     return {
       model: {
-        username: '',
+        login: '',
         password: ''
+      },
+      dictionary: {
+        en: {
+          custom: {
+            login: {
+              required: () => 'Login can not be empty'
+            },
+            password: {
+              required: () => 'Password can not be empty'
+            }
+          }
+        }
       }
     }
   },
-  mounted: function () {
-    console.log(' mounted SignIn screen ')
-  },
   methods: {
     signin () {
-
+      console.log(this.model)
     }
-  },
-  computed: {
-
-  },
-  components: {
-
   }
 }
 </script>

@@ -11,9 +11,34 @@
                   <h1 class="flex my-4 primary--text">Online Store</h1>
                 </div>
                 <v-form>
-                  <v-text-field append-icon="person" name="login" label="Login" type="text" v-model="model.username"></v-text-field>
-                  <v-text-field append-icon="lock" name="password" label="Password" id="password" type="password" v-model="model.password"></v-text-field>
-                  <v-text-field append-icon="lock" name="confirm-password" label="Confirm Password" id="confirm-password" type="password" v-model="model.confirmPassword"></v-text-field>
+                  <v-text-field
+                    append-icon="person"
+                    label="Login"
+                    type="text"
+                    v-model="model.login"
+                    v-validate="'required'"
+                    data-vv-name="login"
+                    :error-messages="errors.first('login')"
+                  ></v-text-field>
+                  <v-text-field
+                    append-icon="lock"
+                    label="Password"
+                    type="password"
+                    v-model="model.password"
+                    v-validate="'required'"
+                    data-vv-name="password"
+                    :error-messages="errors.first('password')"
+                    ref="password"
+                  ></v-text-field>
+                  <v-text-field
+                    append-icon="lock"
+                    label="Confirm Password"
+                    type="password"
+                    v-model="model.confirmPassword"
+                    v-validate="'required|confirmed:password'"
+                    data-vv-name="confirmPassword"
+                    :error-messages="errors.first('confirmPassword')"
+                  ></v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
@@ -30,18 +55,35 @@
 </template>
 
 <script>
+import { Validator } from 'vee-validate'
 export default {
   data () {
     return {
       model: {
-        username: '',
+        login: '',
         password: '',
         confirmPassword: ''
+      },
+      dictionary: {
+        en: {
+          custom: {
+            login: {
+              required: () => 'Login can not be empty'
+            },
+            password: {
+              required: () => 'Password can not be empty'
+            },
+            confirmPassword: {
+              required: () => 'Password confirmation can not be empty',
+              confirmed: () => 'Password is not match'
+            }
+          }
+        }
       }
     }
   },
-  mounted: function () {
-    console.log(' mounted SignIn screen ')
+  mounted: () => {
+    Validator.localize(this.dictionary)
   },
   methods: {
     signup () {
