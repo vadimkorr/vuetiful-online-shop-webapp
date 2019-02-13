@@ -80,17 +80,17 @@ export default {
       {
         icon: 'local_activity',
         title: 'Products',
-        link: '/'
+        link: '/customer/'
       },
       {
         icon: 'local_activity',
-        title: 'Admin',
-        active: true,
-        items: [
-          { title: 'Products', icon: '', link: '/admin' },
-          { title: 'Orders', icon: '', link: '/orders' },
-          { title: 'Create Product', icon: '', link: '/create-product' }
-        ]
+        title: 'Orders',
+        link: '/customer/orders'
+      },
+      {
+        icon: 'local_activity',
+        title: 'Cart',
+        link: '/customer/cart'
       }
     ]
   }),
