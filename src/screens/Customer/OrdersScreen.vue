@@ -31,15 +31,15 @@ export default {
   },
   methods: {
     getOrders (page) {
-      const itemsPerPage = 10
-      const start = itemsPerPage * (page - 1)
-      const count = itemsPerPage
-      ordersService.getOrders(start, count)
-        .then(p => {
-          this.pagesCount = p.data.pages
-          this.$store.commit('addOrders', p.data.items)
-        })
-        .catch(e => console.log('Something went wrong', e))
+      // const itemsPerPage = 10
+      // const start = itemsPerPage * (page - 1)
+      // const count = itemsPerPage
+      // ordersService.getOrders(start, count)
+      //   .then(p => {
+      //     this.pagesCount = p.data.pages
+      //     this.$store.commit('addOrders', p.data.items)
+      //   })
+      //   .catch(e => console.log('Something went wrong', e))
     },
     getInitOrders () {
       const initPage = 1
