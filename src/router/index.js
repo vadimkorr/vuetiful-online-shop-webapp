@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 import { OrdersScreen, ProductCreateScreen, ProductEditScreen, Wrapper as AdminWrapper } from '@/screens/Admin'
 import { CartScreen, ProductsScreen, Wrapper as CustomerWrapper } from '@/screens/Customer'
-import { SignInScreen, Wrapper as UnauthWrapper } from '@/screens/Unauth'
+import { SignUpScreen, SignInScreen, Wrapper as UnauthWrapper } from '@/screens/Unauth'
 
 Vue.use(Router)
 
@@ -15,6 +15,10 @@ export default new Router({
       children: [
         {
           path: '',
+          component: SignUpScreen
+        },
+        {
+          path: 'signin',
           component: SignInScreen
         }
       ]
@@ -24,7 +28,7 @@ export default new Router({
       component: CustomerWrapper,
       children: [
         {
-          path: 'products',
+          path: '',
           component: ProductsScreen
         },
         {

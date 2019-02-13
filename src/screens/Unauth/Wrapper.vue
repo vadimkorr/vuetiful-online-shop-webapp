@@ -1,12 +1,7 @@
 <template>
-  <v-container grid-list-md>
-    <v-layout row wrap>
-      <v-flex d-flex justify-center xs12 sm4 md3 lg3 xl2>
-        HEllo
-        <router-view />
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <v-app id="inspire">
+    <router-view />
+  </v-app>
 </template>
 
 <script>
@@ -17,7 +12,7 @@ export default {
     }
   },
   mounted: function () {
-    console.log(' mounted ')
+    console.log(' mounted unauth wrapper')
   },
   methods: {
 

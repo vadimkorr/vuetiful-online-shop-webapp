@@ -1,5 +1,5 @@
 <template>
-  <v-app id="signin" class="primary">
+  <v-app id="signup" class="primary">
     <v-content>
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
@@ -13,12 +13,13 @@
                 <v-form>
                   <v-text-field append-icon="person" name="login" label="Login" type="text" v-model="model.username"></v-text-field>
                   <v-text-field append-icon="lock" name="password" label="Password" id="password" type="password" v-model="model.password"></v-text-field>
+                  <v-text-field append-icon="lock" name="confirm-password" label="Confirm Password" id="confirm-password" type="password" v-model="model.confirmPassword"></v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
-                <v-btn flat color="primary" :to="'/'">Sign Up</v-btn>
+                <v-btn flat color="primary" :to="'/signin'">Sign In</v-btn>
                 <v-spacer/>
-                <v-btn color="primary" @click="signin()">Sign In</v-btn>
+                <v-btn color="primary" @click="signup()">Sign Up</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -34,7 +35,8 @@ export default {
     return {
       model: {
         username: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
       }
     }
   },
@@ -42,7 +44,7 @@ export default {
     console.log(' mounted SignIn screen ')
   },
   methods: {
-    signin () {
+    signup () {
 
     }
   },
@@ -56,7 +58,7 @@ export default {
 </script>
 
 <style>
-  #signin {
+  #signup {
     height: 50%;
     width: 100%;
     position: absolute;
