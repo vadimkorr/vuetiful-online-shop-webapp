@@ -2,7 +2,7 @@
   <v-container grid-list-md>
     <v-layout row wrap>
       <v-flex d-flex justify-center xs12 sm4 md3 lg3 xl2 v-for="product in prods" :key="`${product.id}`">
-        <product-card :product="product" @addToCart="addToCart"></product-card>
+        <product-card :product="product" @click="editProduct(product.id)"></product-card>
       </v-flex>
     </v-layout>
     <div class="text-xs-center">
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import ProductCard from '@/shared/ProductCard'
+import ProductCard from './ProductCard'
 import productsService from '@/services/products'
 export default {
   data () {
@@ -31,12 +31,13 @@ export default {
     }
   },
   mounted: function () {
-    console.log(' mounted ')
     this.getInitProducts()
   },
   methods: {
-    addToCart (prod) {
-      this.$store.commit('addToCart', prod)
+    editProduct (id) {
+      this.$router.push({
+        path: `/admin/edit-product/${id}`
+      })
     },
     getProducts (page) {
       const itemsPerPage = 10

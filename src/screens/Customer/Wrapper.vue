@@ -57,7 +57,7 @@
         <span class="hidden-sm-and-down">Online Store</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon :to="'/cart'">
+      <v-btn icon :to="'/customer/cart'">
         <countable-icon :icon="'shopping_cart'" :count="cartItemsCount"></countable-icon>
       </v-btn>
     </v-toolbar>

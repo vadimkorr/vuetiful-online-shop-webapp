@@ -7,20 +7,19 @@
       :error-messages="errors.collect('name')"
       label="Name"
       data-vv-name="name"
-      required
+      data-vv-as="name"
     ></v-text-field>
-    <v-textarea
-      v-validate="'required|max:200'"
-      v-model="product.description"
-      :counter="200"
-      :error-messages="errors.collect('description')"
-      label="Description"
-      data-vv-name="description"
-      required>
-    </v-textarea>
+    <v-text-field
+      v-validate="'required|decimal'"
+      v-model="product.price"
+      :error-messages="errors.collect('price')"
+      label="Price"
+      data-vv-name="price"
+      data-vv-as="price"
+    ></v-text-field>
     <template>
-      <img :src="imageUrl" height="150" v-if="imageUrl"/>
-      <v-text-field label="Select Image" @click="pickFile" v-model="imageName" prepend-icon="attach_file"></v-text-field>
+      <img :src="product.imgUrl" height="150" v-if="product.imgUrl"/>
+      <v-text-field label="Select Image" @click="pickFile" v-model="img.name" prepend-icon="attach_file"></v-text-field>
       <input
         type="file"
         style="display: none"
@@ -28,7 +27,7 @@
         accept="image/*"
         @change="onFilePicked" />
     </template>
-    <v-btn @click="saveProduct">Create</v-btn>
+    <v-btn @click="saveProduct">Save</v-btn>
   </form>
 </template>
 
@@ -37,27 +36,16 @@ export default {
   name: 'ProductForm',
   props: ['product', 'isEdit'],
   data: () => ({
-    dictionary: {
-      attributes: {
-        email: 'E-mail Address'
-        // custom attributes
-      },
-      custom: {
-        name: {
-          required: () => 'Name can not be empty',
-          max: 'The name field may not be greater than 10 characters'
-        },
-        description: {
-          required: () => 'Description can not be empty',
-          max: 'The description field may not be greater than 200 characters'
-        }
-      }
-    },
-    imageName: '',
-    imageUrl: '',
-    imageFile: ''
+    img: {
+      name: ''
+    }
   }),
   methods: {
+    reset () {
+      this.img = {
+        name: ''
+      }
+    },
     saveProduct () {
       this.$validator.validateAll().then(isValid => {
         if (isValid) {
@@ -72,26 +60,20 @@ export default {
     onFilePicked (e) {
       const files = e.target.files
       if (files[0] !== undefined) {
-        this.imageName = files[0].name
-        if (this.imageName.lastIndexOf('.') <= 0) {
+        this.img.name = files[0].name
+        if (this.img.name.lastIndexOf('.') <= 0) {
           return
         }
         const fr = new FileReader()
         fr.readAsDataURL(files[0])
         fr.addEventListener('load', () => {
-          this.imageUrl = fr.result
-          this.imageFile = files[0] // this is an image file that can be sent to server...
-          this.product.imageFile = this.imageFile
+          this.product.imgUrl = fr.result
+          this.product.imageFile = files[0]
         })
       } else {
-        this.imageName = ''
-        this.imageFile = ''
-        this.imageUrl = ''
+        this.img.name = ''
       }
     }
-  },
-  created: () => {
-    console.log(`product: ${this.product}`)
   }
 }
 </script>

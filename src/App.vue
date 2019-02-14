@@ -1,47 +1,38 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <router-view />
-  </div>
+    <v-snackbar v-if="snack"
+      :value="snack"
+      :timeout="5000"
+      :color="getSnackColorByType(snack.type)"
+      >
+      {{ snack.text }}
+    </v-snackbar>
+  </v-app>
 </template>
 
 <script>
-// import CountableIcon from '@/shared/CountableIcon'
-
 export default {
-  // name: 'App',
-  // data: () => ({
-  //   drawer: null,
-  //   items: [
-  //     {
-  //       icon: 'local_activity',
-  //       title: 'Products',
-  //       link: '/'
-  //     },
-  //     {
-  //       icon: 'local_activity',
-  //       title: 'Admin',
-  //       active: true,
-  //       items: [
-  //         { title: 'Products', icon: '', link: '/admin' },
-  //         { title: 'Orders', icon: '', link: '/orders' },
-  //         { title: 'Create Product', icon: '', link: '/create-product' }
-  //       ]
-  //     }
-  //   ]
-  // }),
-  // computed: {
-  //   cartItemsCount () {
-  //     return this.$store.getters.cartItemsCount
-  //   }
-  // },
-  // components: {
-  //   CountableIcon
-  // }
+  methods: {
+    getSnackColorByType (type) {
+      switch (type) {
+        case 'success':
+          return 'success'
+        default:
+        case 'info':
+          return 'info'
+        case 'error':
+          return 'error'
+      }
+    }
+  },
+  computed: {
+    snack () {
+      return this.$store.getters.snack
+    }
+  }
 }
 </script>
 
 <style>
-/* #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-} */
 </style>
