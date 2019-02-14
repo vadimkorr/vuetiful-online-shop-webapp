@@ -58,11 +58,7 @@
       </v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <v-container fluid fill-height>
-        <v-layout>
-          <router-view/>
-        </v-layout>
-      </v-container>
+      <router-view/>
     </v-content>
   </v-app>
 </template>
