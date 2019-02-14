@@ -28,7 +28,15 @@
                 </v-layout>
               </v-container>
             </td>
-            <td>{{ props.item.status }}</td>
+            <td>
+              <v-select
+                :items="statuses"
+                @change="onStatusChange(props.item)"
+                item-value="id"
+                item-text="value"
+                v-model="props.item.status"
+              ></v-select>
+            </td>
           </template>
         </v-data-table>
       </v-flex>
@@ -48,6 +56,19 @@ export default {
       totalItems: 0,
       items: [],
       loading: true,
+      statuses: [{
+        id: 'created',
+        value: 'Created'
+      }, {
+        id: '1',
+        value: 'Processing'
+      }, {
+        id: '2',
+        value: 'Completed'
+      }, {
+        id: '3',
+        value: 'Cancelled'
+      }],
       pagination: {
         sortBy: '',
         descending: true,
@@ -82,7 +103,7 @@ export default {
         {
           text: 'Status',
           value: 'status',
-          width: '150px',
+          width: '200px',
           sortable: false
         }
       ]
@@ -117,6 +138,9 @@ export default {
           this.loading = false
           console.log('Something went wrong', e)
         })
+    },
+    onStatusChange (item) {
+      ordersService.changeOrderStatus(item.id, item.status)
     }
   },
   components: {
