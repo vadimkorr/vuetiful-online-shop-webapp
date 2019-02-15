@@ -1,3 +1,4 @@
+import { SERVER_URL } from '@/consts'
 import axios from 'axios'
 
 const DEFAULT_HEADERS = {
@@ -127,5 +128,5 @@ export function upload (uri, formData) {
 // }
 
 function getFullUrl (uri) {
-  return 'http://localhost:8080' + uri
+  return `${SERVER_URL}${uri}`
 }

@@ -6,7 +6,7 @@
       class="">
       <v-img
         :aspect-ratio="4/3"
-        :src="product.image">
+        :src="getImgUrl(product.image)">
       </v-img>
       <v-card-text
         class="pt-4"
@@ -29,12 +29,16 @@
 </template>
 
 <script>
+import { getImgUrl } from '@/helpers'
 export default {
   name: 'product-card',
   props: ['product'],
   methods: {
     addToCart () {
       this.$emit('addToCart', this.product)
+    },
+    getImgUrl (img) {
+      return getImgUrl(img)
     }
   }
 }

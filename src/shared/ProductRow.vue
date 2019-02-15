@@ -2,7 +2,7 @@
 <div>
   <v-list-tile>
     <v-list-tile-avatar>
-      <img :src="product.image">
+      <img :src="getImgUrl(product.image)">
     </v-list-tile-avatar>
     <v-list-tile-content row>
       <v-flex d-flex align-center class="row-controls">
@@ -31,6 +31,7 @@
 
 <script>
 import IncDec from '@/shared/IncDec'
+import { getImgUrl } from '@/helpers'
 
 export default {
   props: ['product', 'showDivider'],
@@ -49,6 +50,9 @@ export default {
     onChange (count) {
       this.overallPrice = this.recalc(this.product.price, count)
       this.$emit('onChange', this.product, count)
+    },
+    getImgUrl (img) {
+      return getImgUrl(img)
     }
   },
   components: {

@@ -23,14 +23,13 @@
                   <order-item
                     :title="orderItem.product.name"
                     :subtitle="`${orderItem.count} x ${orderItem.product.price}₽`"
-                    :imgSrc="'http://localhost:8080/products/' + orderItem.product.img"
+                    :imgSrc="getImgUrl(orderItem.product.img)"
                     class="order-card-container"
                     v-for="orderItem in props.item.items"
                     :key="orderItem.product.id" />
                 </v-layout>
               </v-container>
             </td>
-            <td>{{ `${getOrderSum(props.item.items)}₽` }}</td>
             <td>
               <v-select
                 :items="statuses"
@@ -40,6 +39,7 @@
                 v-model="props.item.status"
               ></v-select>
             </td>
+            <td>{{ `${getOrderSum(props.item.items)}₽` }}</td>
           </template>
         </v-data-table>
       </v-flex>
@@ -54,7 +54,7 @@
 import ordersService from '@/services/orders'
 import { OrderItem } from '@/shared'
 import { statuses } from '@/consts'
-import { getOrderSum } from '@/helpers'
+import { getOrderSum, getImgUrl } from '@/helpers'
 export default {
   data () {
     return {
@@ -94,14 +94,14 @@ export default {
           sortable: false
         },
         {
-          text: 'Sum',
-          width: '150px',
-          sortable: false
-        },
-        {
           text: 'Status',
           value: 'status',
           width: '200px',
+          sortable: false
+        },
+        {
+          text: 'Sum',
+          width: '150px',
           sortable: false
         }
       ]
@@ -136,6 +136,9 @@ export default {
           this.loading = false
           console.log('Something went wrong', e)
         })
+    },
+    getImgUrl (img) {
+      return getImgUrl(img)
     },
     onStatusChange (item) {
       ordersService.changeOrderStatus(item.id, item.status)

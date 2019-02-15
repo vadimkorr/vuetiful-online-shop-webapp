@@ -22,7 +22,7 @@
                   <order-item
                     :title="prod.product.name"
                     :subtitle="`${prod.count} x ${prod.product.price}₽`"
-                    :imgSrc="'http://localhost:8080/products/' + prod.product.img"
+                    :imgSrc="getImgUrl(prod.product.img)"
                     class="order-card-container"
                     v-for="prod in props.item.items"
                     :key="prod.product.id" />
@@ -45,7 +45,7 @@
 import ordersService from '@/services/orders'
 import { OrderItem } from '@/shared'
 import { getStatusById } from '@/services'
-import { getOrderSum } from '@/helpers'
+import { getOrderSum, getImgUrl } from '@/helpers'
 export default {
   data () {
     return {
@@ -126,6 +126,9 @@ export default {
     },
     getOrderSum (orderItems) {
       return getOrderSum(orderItems)
+    },
+    getImgUrl (img) {
+      return getImgUrl(img)
     }
   },
   components: {
