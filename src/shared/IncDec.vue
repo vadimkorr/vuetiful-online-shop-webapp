@@ -1,10 +1,11 @@
 <template>
   <div>
     <v-flex d-flex row align-center>
-      <v-btn fab outline  small color="primary" @click="onDec">
-        <v-icon dark>remove</v-icon>
-      </v-btn>
-      <div class="counter">{{ count }}</div>
+      <div class="mr">
+        <v-btn fab outline small color="primary" @click="onDec">
+          <v-icon dark>remove</v-icon>
+        </v-btn>
+      </div>
       <v-btn fab outline small color="primary" @click="onInc">
         <v-icon dark>add</v-icon>
       </v-btn>
@@ -14,28 +15,19 @@
 
 <script>
 export default {
-  props: ['min', 'init'],
-  data () {
-    return {
-      count: this.init || 0
-    }
-  },
   methods: {
     onInc () {
-      this.count++
-      this.$emit('onChange', this.count)
+      this.$emit('onInc')
     },
     onDec () {
-      this.count = this.count > this.min ? this.count - 1 : this.min
-      this.$emit('onChange', this.count)
+      this.$emit('onDec')
     }
   }
 }
 </script>
 
 <style>
-.counter {
-  width: 30px;
-  text-align: center;
-}
+  .mr {
+    margin-right: 10px
+  }
 </style>

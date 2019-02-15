@@ -35,6 +35,9 @@ export default {
       })
       prod.count = payload.count
       state.products.splice(ind, 1, prod)
+    },
+    clearCart (state) {
+      state.products = []
     }
   },
   actions: { },
