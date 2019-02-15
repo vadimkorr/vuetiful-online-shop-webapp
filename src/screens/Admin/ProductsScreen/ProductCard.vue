@@ -13,7 +13,7 @@
         class="pt-4"
         style="position: relative;">
         <div class="font-weight-light grey--text title mb-2">{{ product.name }}</div>
-        <div class="font-weight-light title mb-2">{{ product.price }}</div>
+        <div class="font-weight-light title mb-2">{{ `${product.price}₽` }}</div>
       </v-card-text>
     </v-card>
   </v-hover>

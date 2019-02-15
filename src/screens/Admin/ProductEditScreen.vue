@@ -16,6 +16,7 @@
 <script>
 import ProductForm from './ProductForm'
 import productsService from '@/services/products'
+import { getImgUrl } from '@/helpers'
 export default {
   data () {
     return {
@@ -34,7 +35,7 @@ export default {
           id: prod.data.id,
           name: prod.data.name,
           price: prod.data.price,
-          imgUrl: prod.data.image
+          imgUrl: getImgUrl(prod.data.image)
         }
       })
       .catch(() => {

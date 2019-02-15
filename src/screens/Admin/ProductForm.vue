@@ -67,8 +67,8 @@ export default {
         const fr = new FileReader()
         fr.readAsDataURL(files[0])
         fr.addEventListener('load', () => {
-          this.product.imgUrl = fr.result
           this.product.imageFile = files[0]
+          this.product.imgUrl = fr.result
         })
       } else {
         this.img.name = ''
