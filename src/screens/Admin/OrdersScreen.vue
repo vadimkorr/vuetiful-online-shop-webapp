@@ -21,13 +21,16 @@
               <v-container>
                 <v-layout row wrap>
                   <order-item
-                    :item="orderItem"
+                    :title="orderItem.product.name"
+                    :subtitle="`${orderItem.count} x ${orderItem.product.price}₽`"
+                    :imgSrc="'http://localhost:8080/products/' + orderItem.product.img"
                     class="order-card-container"
                     v-for="orderItem in props.item.items"
                     :key="orderItem.product.id" />
                 </v-layout>
               </v-container>
             </td>
+            <td>{{ `${getOrderSum(props.item.items)}₽` }}</td>
             <td>
               <v-select
                 :items="statuses"
@@ -49,26 +52,16 @@
 
 <script>
 import ordersService from '@/services/orders'
-import OrderItem from './OrderItem'
+import { OrderItem } from '@/shared'
+import { statuses } from '@/consts'
+import { getOrderSum } from '@/helpers'
 export default {
   data () {
     return {
       totalItems: 0,
       items: [],
       loading: true,
-      statuses: [{
-        id: 'created',
-        value: 'Created'
-      }, {
-        id: '1',
-        value: 'Processing'
-      }, {
-        id: '2',
-        value: 'Completed'
-      }, {
-        id: '3',
-        value: 'Cancelled'
-      }],
+      statuses: statuses,
       pagination: {
         sortBy: '',
         descending: true,
@@ -98,6 +91,11 @@ export default {
         {
           text: 'Items',
           value: 'items',
+          sortable: false
+        },
+        {
+          text: 'Sum',
+          width: '150px',
           sortable: false
         },
         {
@@ -141,6 +139,9 @@ export default {
     },
     onStatusChange (item) {
       ordersService.changeOrderStatus(item.id, item.status)
+    },
+    getOrderSum (orderItems) {
+      return getOrderSum(orderItems)
     }
   },
   components: {

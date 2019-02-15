@@ -1,62 +1,142 @@
 <template>
-  <v-container grid-list-md>
-    <v-flex d-flex justify-center xs12 sm4 md3 lg3 xl2 v-for="order in orders" :key="`${order.id}`">
-      {{order}}
-    </v-flex>
-    <div class="text-xs-center">
-      <v-pagination
-        v-if="orders.length > 0"
-        v-model="page"
-        :length="pagesCount"
-        :total-visible="7"
-        @input="onPageChange"
-      ></v-pagination>
-      <div
-        v-if="orders.length < 1"
-      >No orders yet :(</div>
+  <v-container fluid>
+    <v-layout v-if="items.length > 0">
+      <v-flex>
+        <v-data-table
+          :headers="headers"
+          :items="items"
+          :pagination.sync="pagination"
+          :total-items="totalItems"
+          :loading="loading"
+          :rows-per-page-items="[5, 10, 25]"
+          class="elevation-5"
+        >
+          <template slot="items" slot-scope="props">
+            <td>{{ props.item.id }}</td>
+            <td>{{ props.item.createdAt
+              ? new Date(props.item.createdAt).toLocaleString().split(',').map(s => s.trim()).join('\n')
+              : props.item.createdAt }}</td>
+            <td>
+              <v-container>
+                <v-layout row wrap>
+                  <order-item
+                    :title="prod.product.name"
+                    :subtitle="`${prod.count} x ${prod.product.price}₽`"
+                    :imgSrc="'http://localhost:8080/products/' + prod.product.img"
+                    class="order-card-container"
+                    v-for="prod in props.item.items"
+                    :key="prod.product.id" />
+                </v-layout>
+              </v-container>
+            </td>
+            <td>{{ getStatusById(props.item.status) }}</td>
+            <td>{{ `${getOrderSum(props.item.items)}₽` }}</td>
+          </template>
+        </v-data-table>
+      </v-flex>
+    </v-layout>
+    <div class="text-xs-center" v-if="items.length < 1">
+      <div>No orders yet :(</div>
     </div>
   </v-container>
 </template>
 
 <script>
+import ordersService from '@/services/orders'
+import { OrderItem } from '@/shared'
+import { getStatusById } from '@/services'
+import { getOrderSum } from '@/helpers'
 export default {
   data () {
     return {
-      page: 1,
-      pagesCount: 0
+      totalItems: 0,
+      items: [],
+      loading: true,
+      pagination: {
+        sortBy: '',
+        descending: true,
+        page: 1,
+        rowsPerPage: 10
+      },
+      headers: [
+        {
+          text: 'Id',
+          align: 'left',
+          sortable: false,
+          value: 'id',
+          width: '50px'
+        },
+        {
+          text: 'Created',
+          value: 'createdAt',
+          width: '50px',
+          sortable: false
+        },
+        {
+          text: 'Items',
+          value: 'items',
+          sortable: false
+        },
+        {
+          text: 'Status',
+          value: 'status',
+          width: '150px',
+          sortable: false
+        },
+        {
+          text: 'Sum',
+          width: '150px',
+          sortable: false
+        }
+      ]
+    }
+  },
+  watch: {
+    pagination: {
+      handler () {
+        this.getOrders()
+      },
+      deep: true
     }
   },
   mounted: function () {
-    this.getInitOrders()
+    this.getOrders()
   },
   methods: {
-    getOrders (page) {
-      // const itemsPerPage = 10
-      // const start = itemsPerPage * (page - 1)
-      // const count = itemsPerPage
-      // ordersService.getOrders(start, count)
-      //   .then(p => {
-      //     this.pagesCount = p.data.pages
-      //     this.$store.commit('addOrders', p.data.items)
-      //   })
-      //   .catch(e => console.log('Something went wrong', e))
+    getOrders () {
+      this.loading = true
+      const { sortBy, descending, page, rowsPerPage } = this.pagination
+
+      console.log(sortBy, descending, page, rowsPerPage)
+
+      const start = rowsPerPage * (page - 1)
+      ordersService.getOrders(start, rowsPerPage)
+        .then(res => {
+          this.loading = false
+          this.items = res.data.items
+          this.totalItems = res.data.totalItems
+        })
+        .catch(e => {
+          this.loading = false
+          console.log('Something went wrong', e)
+        })
     },
-    getInitOrders () {
-      const initPage = 1
-      this.getOrders(initPage)
+    getStatusById (id) {
+      return getStatusById(id)
     },
-    onPageChange (page) {
-      this.getOrders(page)
+    getOrderSum (orderItems) {
+      return getOrderSum(orderItems)
     }
   },
-  computed: {
-    orders () {
-      return this.$store.getters.orders
-    }
+  components: {
+    OrderItem
   }
 }
 </script>
 
 <style>
-
+  .order-card-container {
+    width: 150px;
+    margin: 5px;
+  }
 </style>
