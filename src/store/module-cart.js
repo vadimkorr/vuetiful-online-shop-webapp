@@ -36,15 +36,6 @@ export default {
       prod.count = payload.count
       state.products.splice(ind, 1, prod)
     }
-    // decCartProduct (state, product) {
-    //   let ind = 0;
-    //   let prod = state.products.find((p, index) => {
-    //     ind = index;
-    //     return p.id === product.id
-    //   });
-    //   prod.count = (prod.count || 0) > 0 ? (prod.count || 0) - 1 : 0;
-    //   state.products.splice(ind, 1, prod);
-    // }
   },
   actions: { },
   getters: {

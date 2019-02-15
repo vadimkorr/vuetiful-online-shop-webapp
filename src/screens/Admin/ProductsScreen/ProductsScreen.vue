@@ -1,20 +1,20 @@
 <template>
   <v-container grid-list-md>
     <v-layout row wrap>
-      <v-flex d-flex justify-center xs12 sm4 md3 lg3 xl2 v-for="product in prods" :key="`${product.id}`">
+      <v-flex d-flex justify-center xs12 sm4 md3 lg3 xl2 v-for="product in items" :key="`${product.id}`">
         <product-card :product="product" @click="editProduct(product.id)"></product-card>
       </v-flex>
     </v-layout>
     <div class="text-xs-center">
       <v-pagination
-        v-if="prods.length > 0"
+        v-if="items.length > 0"
         v-model="page"
         :length="pagesCount"
         :total-visible="7"
         @input="onPageChange"
       ></v-pagination>
       <div
-        v-if="prods.length < 1"
+        v-if="items.length < 1"
       >No products yet :(</div>
     </div>
   </v-container>
@@ -27,7 +27,8 @@ export default {
   data () {
     return {
       page: 1,
-      pagesCount: 0
+      pagesCount: 0,
+      items: []
     }
   },
   mounted: function () {
@@ -46,7 +47,7 @@ export default {
       productsService.getProducts(start, count)
         .then(p => {
           this.pagesCount = p.data.pages
-          this.$store.commit('addProds', p.data.products)
+          this.items = p.data.products
         })
         .catch(e => console.log('Something went wrong', e))
     },
@@ -56,12 +57,6 @@ export default {
     },
     onPageChange (page) {
       this.getProducts(page)
-    }
-  },
-  computed: {
-    prods () {
-      console.log('from store ', this.$store.getters.products)
-      return this.$store.getters.products
     }
   },
   components: {

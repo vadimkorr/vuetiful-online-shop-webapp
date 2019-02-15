@@ -1,9 +1,5 @@
 export default {
   state: {
-    // snack: {
-    //   text: '',
-    //   type: ''
-    // }
     snack: null
   },
   mutations: {
