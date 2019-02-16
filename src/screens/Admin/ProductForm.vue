@@ -49,7 +49,6 @@ export default {
     saveProduct () {
       this.$validator.validateAll().then(isValid => {
         if (isValid) {
-          console.log(`Saving: ${JSON.stringify(this.product)}`)
           this.$emit('save-product', this.product)
         }
       })

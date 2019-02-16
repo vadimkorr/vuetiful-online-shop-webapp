@@ -5,6 +5,9 @@ export default {
   getOrders: (start, count) => {
     return get(Urls.getOrders, { start, count })
   },
+  getOrdersOfUser: (start, count) => {
+    return get(Urls.getOrdersOfUser, { start, count })
+  },
   getOrder: id => {
     return get(`${Urls.getOrder}/${id}`)
   },

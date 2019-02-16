@@ -47,6 +47,8 @@
 <script>
 import { Validator } from 'vee-validate'
 import { authService } from '@/services'
+import { decodeToken } from '@/helpers'
+import { roles } from '@/consts'
 
 export default {
   data () {
@@ -75,8 +77,15 @@ export default {
       authService.signIn({ login: this.model.login, password: this.model.password })
         .then((res) => {
           localStorage.setItem('token', res.data.token)
-          console.log(localStorage)
-          this.$router.push({ path: '/customer' })
+          const userData = decodeToken(res.data.token)
+          switch (userData.role) {
+            case roles.admin:
+              this.$router.push({ path: '/admin/orders' })
+              break
+            case roles.user:
+              this.$router.push({ path: '/customer' })
+              break
+          }
         })
         .catch(() => {
           this.$store.commit('openSnack', {

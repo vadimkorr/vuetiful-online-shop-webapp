@@ -6,23 +6,6 @@
 
 <script>
 export default {
-  data () {
-    return {
-
-    }
-  },
-  mounted: function () {
-    console.log(' mounted unauth wrapper')
-  },
-  methods: {
-
-  },
-  computed: {
-
-  },
-  components: {
-
-  }
 }
 </script>
 

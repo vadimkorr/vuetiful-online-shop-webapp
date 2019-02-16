@@ -122,9 +122,6 @@ export default {
     getOrders () {
       this.loading = true
       const { sortBy, descending, page, rowsPerPage } = this.pagination
-
-      console.log(sortBy, descending, page, rowsPerPage)
-
       const start = rowsPerPage * (page - 1)
       ordersService.getOrders(start, rowsPerPage)
         .then(res => {
