@@ -10,5 +10,9 @@ export const Urls = {
   getOrders: '/api/v1/orders',
   getOrder: '/api/v1/orders',
   createOrder: '/api/v1/orders',
-  changeOrderStatus: '/api/v1/orders'
+  changeOrderStatus: '/api/v1/orders',
+
+  // auth
+  signUp: '/api/v1/auth/register',
+  signIn: '/api/v1/auth/login'
 }

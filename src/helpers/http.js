@@ -13,14 +13,13 @@ function getHeaders (multipart = false) {
   if (multipart) {
     defaultHeaders = {}
   }
-
-  if (localStorage.token) {
+  const token = localStorage.getItem('token')
+  if (token) {
     defaultHeaders = {
-      Authorization: `JWT ${localStorage.token}`,
+      Authorization: `Bearer ${token}`,
       ...defaultHeaders
     }
   }
-
   return defaultHeaders
 }
 

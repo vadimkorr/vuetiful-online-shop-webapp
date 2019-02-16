@@ -56,6 +56,7 @@
 
 <script>
 import { Validator } from 'vee-validate'
+import { authService } from '@/services'
 export default {
   data () {
     return {
@@ -87,7 +88,20 @@ export default {
   },
   methods: {
     signup () {
-
+      authService.signUp({ login: this.model.login, password: this.model.password })
+        .then(() => {
+          this.$store.commit('openSnack', {
+            text: 'You have signed up succesfully',
+            type: 'success'
+          })
+          this.$router.push({ path: '/signin' })
+        })
+        .catch(() => {
+          this.$store.commit('openSnack', {
+            text: 'Something went wrong',
+            type: 'error'
+          })
+        })
     }
   },
   computed: {

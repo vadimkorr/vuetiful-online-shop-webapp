@@ -46,6 +46,8 @@
 
 <script>
 import { Validator } from 'vee-validate'
+import { authService } from '@/services'
+
 export default {
   data () {
     Validator.localize(this.dictionary)
@@ -70,7 +72,18 @@ export default {
   },
   methods: {
     signin () {
-      console.log(this.model)
+      authService.signIn({ login: this.model.login, password: this.model.password })
+        .then((res) => {
+          localStorage.setItem('token', res.data.token)
+          console.log(localStorage)
+          this.$router.push({ path: '/customer' })
+        })
+        .catch(() => {
+          this.$store.commit('openSnack', {
+            text: 'Something went wrong',
+            type: 'error'
+          })
+        })
     }
   }
 }
