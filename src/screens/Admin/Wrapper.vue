@@ -69,17 +69,17 @@ export default {
     drawer: null,
     items: [
       {
-        icon: 'local_activity',
+        icon: 'reorder',
         title: 'Orders',
         link: '/admin/orders'
       },
       {
-        icon: 'local_activity',
+        icon: 'store',
         title: 'Products',
         active: true,
         items: [
-          { title: 'Products', icon: 'local_activity', link: '/admin/products' },
-          { title: 'Create', icon: 'local_activity', link: '/admin/create-product' }
+          { title: 'Products', icon: 'apps', link: '/admin/products' },
+          { title: 'Create', icon: 'add', link: '/admin/create-product' }
         ]
       }
     ]

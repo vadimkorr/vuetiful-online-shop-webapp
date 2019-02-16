@@ -78,17 +78,17 @@ export default {
     drawer: null,
     items: [
       {
-        icon: 'local_activity',
+        icon: 'apps',
         title: 'Products',
         link: '/customer/'
       },
       {
-        icon: 'local_activity',
+        icon: 'reorder',
         title: 'Orders',
         link: '/customer/orders'
       },
       {
-        icon: 'local_activity',
+        icon: 'shopping_cart',
         title: 'Cart',
         link: '/customer/cart'
       }
