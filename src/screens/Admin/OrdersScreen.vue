@@ -121,7 +121,7 @@ export default {
   methods: {
     getOrders () {
       this.loading = true
-      const { sortBy, descending, page, rowsPerPage } = this.pagination
+      const { page, rowsPerPage } = this.pagination
       const start = rowsPerPage * (page - 1)
       ordersService.getOrders(start, rowsPerPage)
         .then(res => {

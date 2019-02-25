@@ -12,6 +12,10 @@ User 1: `user1 P@ssw0rd`\
 User 2: `user2 P@ssw0rd`\
 or sign up as user.
 
+### Testing on deployment
+
+`chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security`
+
 ### Screenshots
 
 #### Sign in
